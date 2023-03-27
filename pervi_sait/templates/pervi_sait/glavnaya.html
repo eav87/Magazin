@@ -8,16 +8,14 @@
     <a id="to" href="vse_auto" >Запись на ТО</a>
 <form action="glavnaya" method="get">
     Выберите авто
-      <select>
-        <option name="марка">MERSEDES-BENZ</option>
+      <select name="marka">
+        <option >MERSEDES-BENZ</option>
         <option>BMW</option>
         <option>AUDI</option>
-      </select>
-</form>
-<form>
-    Выберите модель
-    <select>
-            <option name="модель">MERSEDES-A-CLASS</option>
+      </select><br>
+      Выберите модель
+      <select name="model">
+            <option>MERSEDES-A-CLASS</option>
             <option>MERSEDES-B-CLASS</option>
             <option>MERSEDES-C-CLASS</option>
             <option>AUDI-A-1</option>
@@ -26,7 +24,8 @@
             <option>BMW-2-СЕРИИ</option>
             <option>BMW-3-СЕРИИ</option>
             <option>BMW-5-СЕРИИ</option>
-    </select>
+      </select>
+    <input type="submit" class="btn btn-success" >
     </form>
 </div>
 {% endblock %}
