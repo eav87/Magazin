@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Александр Егоров">
+    <meta name="description" content="Первый сайт">
+    <meta name="keywords" content="Первый сайт,магазин,тест,html">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "pervi_sait/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css" %}">
+    <link rel="stylesheet" href={% static "pervi_sait/css/main.css" %}>
+</head>
+<body>
+    <header>
+        Чуваш-Авто<br>
+        <a href='vse_auto'>Лучшие автомобили только у нас!!!</a>
+        <a id = 'glav' href="glavnaya">Главная</a>
+    </header>
+    <aside>
+        <div id="menu">
+            <div id="foto1"><a href='vtoraya'>bmw</a></div>
+            <div id="foto2"><a href='pervaya'>mersedes</a></div>
+            <div id="foto3"><a href='tretya'>audi</a></div>
+        </div>
+
+    </aside>
+    <main>
+        {% block content %}{% endblock %}
+
+    </main>
+    <footer>
+        <div id="footer">
+        Регистрация на сайте
+            <label>
+                <input id="imya" type="text" placeholder="Имя">
+                <input id="parol" type="password" placeholder="Пароль">
+            </label>
+    <address>Мы находимся по адрессу г.Чебоксары Ядринское шоссе 4 тел. 8 962 321 7456</address>
+        </div>
+    </footer>
+</body>
+</html>
