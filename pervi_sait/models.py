@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Auto(models.Model):
-    auto = models.CharField('Марка',max_length=200)
-    auto_1 = models.CharField('Модель',max_length=200)
-    auto_2 = models.TextField('Характеристики')
-    auto_3 = models.DateField('Дата публикации')
+    marka = models.CharField('Марка',max_length=200)
+    model = models.CharField('Модель',max_length=200)
+    harakteristika = models.TextField('Характеристики')
+    data = models.DateField('Дата публикации')
 
     def __str__(self):
-        return self.auto
+        return self.marka

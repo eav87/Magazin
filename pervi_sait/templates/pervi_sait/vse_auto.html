@@ -1,7 +1,12 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {% block title %}{% endblock %}
 {% block content %}
-    <p>vse auto</p>
-    <h1>{{asd}}</h1>
-
+    {% for el in asd %}
+        <div class="alert alert-warning">
+        <h3>{{ el.marka }}</h3>
+        <h4>{{ el.model }}</h4>
+        <p>{{ el.harakteristika }}</p>
+        <a href="{% url 'news_detail' el.id %}" class="btn btn-warning">Читать детальнее</a>
+        </div>
+    {% endfor %}
 {% endblock %}

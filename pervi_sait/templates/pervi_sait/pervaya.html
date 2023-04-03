@@ -2,4 +2,16 @@
 {% block title %}mersedes{% endblock %}
 {% block content %}
     <p>mersedes</p>
+    {% if asd %}
+        {% for el in asd %}
+            <div class="alert alert-warning">
+                <h3>{{ el.marka }} %}</h3>
+                <h4>{{ el.model }}</h4>
+                <p>{{ el.harakteristika }}</p>
+                <p>{{ el.data }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Нет машин в наличии!</p>
+    {% endif %}
 {% endblock %}
