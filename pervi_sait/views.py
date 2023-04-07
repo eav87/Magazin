@@ -12,6 +12,7 @@ class NewUpdateView(UpdateView):
     # fields = ['marka', 'model', 'harakteristika', 'data']
 
 
+
 def glavnaya(request):
     return render(request,'pervi_sait/glavnaya.html')
 

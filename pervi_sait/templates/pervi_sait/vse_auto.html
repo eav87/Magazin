@@ -6,7 +6,7 @@
         <h3>{{ el.marka }}</h3>
         <h4>{{ el.model }}</h4>
         <p>{{ el.harakteristika }}</p>
-        <a href="{% url 'news_detail' el.id %}" class="btn btn-warning">Читать детальнее</a>
+        <a href="{% url 'news_detail' el.id %}" class="btn btn-warning">Посмотреть</a>
         </div>
     {% endfor %}
 {% endblock %}
