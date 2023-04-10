@@ -32,7 +32,7 @@ def tretya(request):
 
 
 def vse_auto(request):
-    asd = Auto.objects.all()
+    asd = Auto.objects.all().order_by('-data')
     return render(request, 'pervi_sait/vse_auto.html',{'asd': asd })
 
 
