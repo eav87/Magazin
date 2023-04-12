@@ -3,7 +3,7 @@
 {% block content %}
     <div class="features">
     <p>Форма добавления авто</p>
-        <form method="post">
+        <form class="form" method="post">
             {% csrf_token %}
             {{ form.marka}}<br>
             {{ form.model}}<br>
@@ -11,10 +11,7 @@
             {{ form.data}}<br>
             <span>{{ error }}</span>
             <button type="submit" class="btn btn-success">Добавить авто</button>
-
-
         </form>
-
     </div>
 
 {% endblock %}

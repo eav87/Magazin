@@ -3,12 +3,12 @@ a{
  color:snow;
 }
 a:hover{
- color: teal;
- transition: transform.6s;
- transform: scale(1.10);
+ color: #49eeee;
+ transition: 0.8ms;
+ transform: scale(1.16);
 }
-header {
- color: teal;
+nav {
+ color: #169f9f;
  background-image: url("https://thumbs.dreamstime.com/b/высокоскоростной-дизайн-движения-высок-техник-абстрактная-технология-121323504.jpg");
  background-size: cover;
  width: 100%;
@@ -32,7 +32,7 @@ main {
  font-family: Lobster;
 }
 aside {
- color: white;
+ color: snow;
  width: 25%;
  height: 100vh;
  text-align: center;
@@ -41,7 +41,8 @@ aside {
  float: left;
  font-family: Lobster;
 }
-footer {
+.text-center {
+ float: bottom;
  color: white;
  background-image: url("https://thumbs.dreamstime.com/b/высокоскоростной-дизайн-движения-высок-техник-абстрактная-технология-121323504.jpg");
  background-size: cover;
@@ -75,8 +76,9 @@ footer {
 select{
  font-family: Bahnschrift;
 }
-form {color: black}
-
+form {
+ font-family: Arial;
+ color: black}
 
 .alert {
  float: right;
@@ -89,12 +91,30 @@ form {color: black}
  color: white;
 }
 
-form{
+.form{
  margin-left: 25%;
  width: 500px;
  margin-top: 50px;
 }
 .features {
- color: #3520d9;
+ color: #20cad9;
  font-family: "Book Antiqua";
+}
+
+#imya {
+ background: #9ec5fe;
+ width: 150px;
+height: 35px;
+}
+#parol{
+ background: #9ec5fe;
+ width: 150px;
+height: 35px;
+}
+input { font-size: 20px}
+.card {
+ --bs-card-border-radius: unset;
+}
+.carousel-caption {
+ font-family: Lobster;
 }

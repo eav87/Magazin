@@ -1,19 +1,17 @@
 {% extends 'pervi_sait/loyaut.html' %}
-{%block title %}{{ title }}{% endblock %}
+{%block title %}{{ auto.marka }}{% endblock %}
 {% block content %}
-    {{ list_1 }}
+{#    {{ list_1 }}#}
 <div id ="content">
-    <a id="akcii" href="vse_auto" >Акции</a>
-    <a id="treid-in" href="vse_auto" >Трейд-ин</a>
-    <a id="to" href="vse_auto" >Запись на ТО</a>
 <form action="glavnaya" method="get">
+    <label>
     Выберите авто
       <select name="marka">
         <option >MERSEDES-BENZ</option>
         <option>BMW</option>
         <option>AUDI</option>
-      </select><br>
-      Выберите модель
+      </select>
+    Выберите модель<br>
       <select name="model">
             <option>MERSEDES-A-CLASS</option>
             <option>MERSEDES-B-CLASS</option>
@@ -25,7 +23,8 @@
             <option>BMW-3-СЕРИИ</option>
             <option>BMW-5-СЕРИИ</option>
       </select>
-    <input type="submit" class="btn btn-success" >
-    </form>
+      <input type="submit" class="btn btn-success" >
+      </label>
+</form>
 </div>
 {% endblock %}
