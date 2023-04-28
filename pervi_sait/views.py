@@ -9,7 +9,7 @@ class NewUpdateView(UpdateView):
     template_name = 'pervi_sait/forma_auto.html'
 
     form_class = AutoForm
-    # fields = ['marka', 'model', 'harakteristika', 'data']
+    fields = ['marka', 'model', 'harakteristika', 'data']
 
 
 

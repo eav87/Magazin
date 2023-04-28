@@ -1,5 +1,5 @@
 from django.urls import path
-from .import views
+from . import views
 urlpatterns = [
     path('',views.glavnaya,name = 'glavnaya'),
     path('forma_auto',views.forma_auto,name = 'forma_auto'),

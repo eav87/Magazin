@@ -1,6 +1,5 @@
 from .models import Auto
-from django .forms import ModelForm,TextInput,DateInput,Textarea
-
+from django.forms import ModelForm, TextInput, DateInput, Textarea
 
 class AutoForm(ModelForm):
     class Meta:
