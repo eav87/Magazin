@@ -1,0 +1,18 @@
+{% extends 'pervi_sait/loyaut.html' %}
+    {% block title %}Форма добавления пользователя{% endblock %}
+{% block content %}
+    <div class="features">
+    <p>Форма добавления USER</p>
+        <form class="form" method="post">
+            {% csrf_token %}
+            {{ form.user}}<br>
+            {{ form.parol}}<br>
+            {{ form.parol}}<br>
+            <span>{{ error }}</span>
+            <button type="submit" class="btn btn-success">Добавить Пользователя</button>
+        </form>
+    </div>
+
+
+
+{% endblock %}

@@ -7,8 +7,9 @@
             <div class="alert alert-warning">
                 <h3>{{ el.marka }}</h3>
                 <h4>{{ el.model }}</h4>
-                <p>{{ el.harakteristika }}</p>
+                <p>{{ el.harakteristika|truncatewords:10 }}</p>
                 <p>{{ el.data }}</p>
+                <a href="{% url 'details_view' el.id %}" class="btn btn-warning">Посмотреть</a>
             </div>
         {% endfor %}
     {% else %}

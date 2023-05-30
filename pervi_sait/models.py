@@ -9,3 +9,7 @@ class Auto(models.Model):
 
     def __str__(self):
         return self.marka
+    class Metta:
+        verbose_name='автомобили'
+        verbose_name_plural='автомобили'
+        ordering = ['data','title']

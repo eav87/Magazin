@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Александр Егоров">
@@ -17,13 +17,18 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md">
+        <a href="{% url 'glavnaya' %}" type="button" class="btn btn-danger">Главная страница сайта</a>
         "CHUVASH-AUTO"<br>
-        <a href="glavnaya" type="button" class="btn btn-danger">Главная страница</a>
-{#        <a href="forma_auto" class="button btn btn-info">Добавить авто</a>#}
-        Вход в личный кабинет<br>
-        <input id="imya" type="text" placeholder="Логин"><br>
-        <input id="parol" type="password" placeholder="Пароль">
-        <button type="submit" class="btn btn-primary">Войти</button>
+        {% if request.user.is_authenticated %}
+            <a href="logout" type="button" class="btn btn-warning">Выйти</a><br><br>
+
+            <a href="forma_auto" class="button btn btn-success">Добавить авто на сайт</a>
+            <button class="btn btn-outline-danger">{{ user.username }}, вы вошли на сайт</button>
+
+        {% else %}
+        <a href="login" type="button" class="btn btn-primary">Войти в личный кабинет</a>
+        <a href="register" type="button" class="btn btn-success">Регистрация пользователя</a>
+        {% endif %}
 </nav>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -40,8 +45,8 @@
               <H3>Лучшие автомобили только у нас!!!</H3>
               <a href="vse_auto" type="button" class="btn btn-primary">Акции</a>
               <a href="pervaya" type="button" class="btn btn-success">Посмотреть авто</a>
-              <a href="vse_auto" type="button" class="btn btn-danger">Записаться на ТО</a>
-              <a href="vse_auto" type="button" class="btn btn-info">Трейд-ин</a>
+              <a href="login" type="button" class="btn btn-danger">Записаться на ТО</a>
+              <a href="login" type="button" class="btn btn-info">Трейд-ин</a>
           </div>
       </div>
       <div class="carousel-item">
@@ -49,10 +54,10 @@
           <div class="carousel-caption">
           <h1 class="display-6">BMW</h1>
           <H3>Лучшие автомобили только у нас!!!</H3>
-              <a href="vse_auto" type="button" class="btn btn-primary">Акции</a>
+              <a href='{% url "vse_auto" %}' type="button" class="btn btn-primary">Акции</a>
               <a href="vtoraya" type="button" class="btn btn-success" >Посмотреть авто</a>
-              <a href="vse_auto" type="button" class="btn btn-danger">Записаться на то</a>
-              <a href="vse_auto" type="button" class="btn btn-info">Трейд-ин</a>
+              <a href="login" type="button" class="btn btn-danger">Записаться на то</a>
+              <a href="login" type="button" class="btn btn-info">Трейд-ин</a>
           </div>
       </div>
       <div class="carousel-item">
@@ -62,8 +67,8 @@
               <H3>Лучшие автомобили только у нас!!!</H3>
               <a href="vse_auto" type="button" class="btn btn-primary">Акции</a>
               <a href="tretya" type="button" class="btn btn-success">Посмотреть авто</a>
-              <a href="vse_auto" type="button" class="btn btn-danger">Записаться на то</a>
-              <a href="vse_auto" type="button" class="btn btn-info">Трейд-ин</a>
+              <a href="login" type="button" class="btn btn-danger">Записаться на то</a>
+              <a href="login" type="button" class="btn btn-info">Трейд-ин</a>
           </div>
       </div>
   </div>
@@ -83,15 +88,18 @@
             <div id="foto3"><a href='tretya'>audi</a></div>
         </div>
 </aside>
-</div>
+{#</div>#}
     <main>
         {% block content %}{% endblock %}
     </main>
-    <div class="card text-center">
-           <div class="card-header" >
+<footer class="container container-fluid">
+    <div class="container">
+        <div class="row padding text-center">
+            <div class="col-12">
     <address>Мы находимся по адрессу г.Чебоксары Ядринское шоссе 4 тел. 8 962 321 7456</address>
+            </div>
         </div>
-</div>
-</div>
+    </div>
+</footer>
 </body>
 </html>

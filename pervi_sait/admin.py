@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Auto
-admin.site.register(Auto)
+from .models import *
+# admin.site.register(Auto,AutoAdmin)
 
 # Register your models here.
+# class AutoAdmin(admin.ModelAdmin):
+#     list_display = ('title','model','harakteristika','data')
+#     list_display_links = ('id','title')
+#     search_fields = ('title','data')
+
+
+admin.site.register(Auto)
+
+
