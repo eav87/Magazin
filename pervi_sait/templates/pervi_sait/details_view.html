@@ -5,4 +5,6 @@
     <h2>{{ auto.model }}</h2>
     <h3>{{ auto.harakteristika }}</h3>
     <h4>{{ auto.data}}</h4><br>
+    <a href="{% url 'update_auto' auto.id %}" class="btn btn-light">Редактировать</a>
+    <a href="{% url 'delete_auto' auto.id %}" class="btn text-bg-info">Удалить</a>
 {% endblock %}

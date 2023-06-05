@@ -3,7 +3,7 @@ a{
  color:snow;
 }
 a:hover{
- color: #49eeee;
+ color: rgba(182, 52, 52, 0);
  transition: 0.8ms;
  transform: scale(1.16);
 }
@@ -44,14 +44,14 @@ aside {
  font-family: Lobster;
  position: relative;
 }
-footer {
- height: 30px;
- color: #169fbb;
- background-image: url("https://thumbs.dreamstime.com/b/высокоскоростной-дизайн-движения-высок-техник-абстрактная-технология-121323504.jpg");
- background-size: cover;
- font-family: Lobster;
- text-align: center;
-}
+/*footer {*/
+/* height: 30px;*/
+/* color: #169fbb;*/
+/* background-image: url("https://thumbs.dreamstime.com/b/высокоскоростной-дизайн-движения-высок-техник-абстрактная-технология-121323504.jpg");*/
+/* background-size: cover;*/
+/* font-family: Lobster;*/
+/* text-align: center;*/
+/*}*/
 #foto1{
  width: 100%;
  height: 200px;
@@ -80,28 +80,28 @@ select{
  font-family: Bahnschrift;
 }
 form {
- font-family: Arial;
- color: black}
+ border-radius: 5px 5px 5px 5px;
+ font-family:Bahnschrift;
+}
 
 .alert {
- float:bottom;
- clear: both;
- width: 200px;
- margin: 50px 50px 50px 50px;
- background: #217988;
+ display: inline-block;
+ justify-content: right;
+ width: 400px;
+ margin:auto;
+ background: #4d96a4;
  text-align: center;
  font-size: 14px;
  color: white;
 }
-
 .form{
- margin-left: 25%;
- width: 400px;
- margin-top: 50px;
+ border-radius: 5px 5px 5px 5px;
+ width: 500px;
+ margin:auto;
 }
 .features {
  height: 605px;
- /*border-radius: 5px 5px 5px 5px;*/
+
  background: #2381a2;
  color: snow;
  font-family: Lobster;

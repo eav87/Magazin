@@ -9,7 +9,12 @@ class Auto(models.Model):
 
     def __str__(self):
         return self.marka
+
+    def get_absolute_url(self):
+        return f'/{self.id}'
+
+
     class Metta:
         verbose_name='автомобили'
         verbose_name_plural='автомобили'
-        ordering = ['data','title']
+        ordering = ['data']

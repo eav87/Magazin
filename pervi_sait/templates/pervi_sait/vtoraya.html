@@ -1,19 +1,22 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {% block title %}{% endblock %}
 {% block content %}
-        <p>BMW</p>
-    {% if asd %}
-        {% for el in asd %}
-            <div class="alert alert-warning">
-                <h3>{{ el.marka }}</h3>
-                <h4>{{ el.model }}</h4>
-                <p>{{ el.harakteristika|linebreaks|truncatewords:10 }}</p>
+{#    {% if page_obj %}#}
+        {% for el in page_obj %}
+            <div class="alert">
+                <h3>{{ el.marka|title}}</h3>
+                <h4>{{ el.model|title }}</h4>
+                <p>{{ el.harakteristika|lower|capfirst|truncatewords:10 }}</p>
                 <p>{{ el.data }}</p>
                 <a href="{% url 'details_view' el.id %}" class="btn btn-warning">Посмотреть</a>
-
             </div>
         {% endfor %}
-    {% else %}
-        <p>Нет машин в наличии!</p>
-    {% endif %}
+{#    {% else %}#}
+{#        <p>Нет машин в наличии!</p>#}
+        <div class="container-fluid">
+            {% for p in page_obj.paginator.page_range %}
+            <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
+            {% endfor %}
+    </div>
+{#    {% endif %}#}
 {% endblock %}

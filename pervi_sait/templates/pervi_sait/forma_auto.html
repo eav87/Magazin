@@ -2,7 +2,6 @@
 {% block title %}Форма добавления авто{% endblock %}
 {% block content %}
     <div class='features'>
-    <p>Форма добавления авто</p>
         <form class="form" method="post">
             {% csrf_token %}
             {{ form.marka}}<br>
@@ -13,5 +12,4 @@
             <button type="submit" class="btn btn-success">Добавить авто</button>
         </form>
     </div>
-
 {% endblock %}
