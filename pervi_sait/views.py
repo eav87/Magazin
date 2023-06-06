@@ -9,6 +9,8 @@ from .models import Auto
 from .forms import AutoForm, Vibor_AutoForm, RegisterUserForm
 from django.views.generic import DetailView, UpdateView, ListView, CreateView, DeleteView
 
+PER_PAGE = 4
+
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
@@ -59,7 +61,7 @@ def glavnaya(request):
 
 def pervaya(request):
     asd = Auto.objects.filter(marka = 'Mersedes' )
-    paginator = Paginator(asd, 4)
+    paginator = Paginator(asd, PER_PAGE)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -68,7 +70,7 @@ def pervaya(request):
 
 def vtoraya(request):
     asd = Auto.objects.filter(marka = 'BMW')
-    paginator = Paginator(asd, 4)
+    paginator = Paginator(asd, PER_PAGE)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -76,8 +78,8 @@ def vtoraya(request):
 
 
 def tretya(request):
-    asd = Auto.objects.filter(marka = 'AUDI')
-    paginator = Paginator(asd, 4)
+    asd = Auto.objects.filter(marka = 'Audi')
+    paginator = Paginator(asd, PER_PAGE)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

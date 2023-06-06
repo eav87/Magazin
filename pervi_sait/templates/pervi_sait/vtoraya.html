@@ -1,7 +1,7 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {% block title %}{% endblock %}
 {% block content %}
-{#    {% if page_obj %}#}
+    {% if page_obj %}
         {% for el in page_obj %}
             <div class="alert">
                 <h3>{{ el.marka|title}}</h3>
@@ -11,12 +11,12 @@
                 <a href="{% url 'details_view' el.id %}" class="btn btn-warning">Посмотреть</a>
             </div>
         {% endfor %}
-{#    {% else %}#}
-{#        <p>Нет машин в наличии!</p>#}
+    {% else %}
+        <p>Нет машин в наличии!</p>
         <div class="container-fluid">
             {% for p in page_obj.paginator.page_range %}
             <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
             {% endfor %}
     </div>
-{#    {% endif %}#}
+    {% endif %}
 {% endblock %}
