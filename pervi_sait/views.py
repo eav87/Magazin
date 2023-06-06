@@ -58,7 +58,7 @@ def glavnaya(request):
 
 
 def pervaya(request):
-    asd = Auto.objects.filter(marka = 'MERSEDES-BENZ')
+    asd = Auto.objects.filter(marka = 'Mersedes' )
     paginator = Paginator(asd, 4)
 
     page_number = request.GET.get('page')

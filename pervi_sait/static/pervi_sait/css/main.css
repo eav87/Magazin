@@ -3,7 +3,7 @@ a{
  color:snow;
 }
 a:hover{
- color: rgba(182, 52, 52, 0);
+ color:snow;
  transition: 0.8ms;
  transform: scale(1.16);
 }
@@ -29,7 +29,7 @@ main {
  color: #000000;
  font-size:30px;
  padding-top:5px;
- font-family: Lobster;
+ font-family: Bahnschrift;
  position:relative;
 }
 aside {
@@ -104,7 +104,7 @@ form {
 
  background: #2381a2;
  color: snow;
- font-family: Lobster;
+ font-family: Bahnschrift;
  position: relative;
  top:-5px ;
 }
