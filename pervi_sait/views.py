@@ -86,6 +86,10 @@ def tretya(request):
     return render(request, 'pervi_sait/tretya.html',{'page_obj':page_obj})
 
 
+
+def akcii(request):
+    return render(request,'pervi_sait/Akcii.html')
+
 def vse_auto(request):
     asd = Auto.objects.all().order_by('-data')
     paginator = Paginator(asd,4)
@@ -119,8 +123,7 @@ def vibor_auto_glavnaya(request):
     if request.method == 'POST':
         form1=AutoForm(request.POST)
         if form1.is_valid():
-            return
-            # return redirect('vse_auto')
+            return {{form1}}
         else:
             error = 'Форма не верна'
 
