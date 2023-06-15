@@ -11,13 +11,15 @@
                 <a href="{% url 'details_view' el.id %}" class="btn btn-warning">Посмотреть</a>
             </div>
         {% endfor %}
+        <div class="container-fluid">
         {% for p in page_obj.paginator.page_range %}
                  {% if page_obj.number == p %}
                      <button class="btn btn-info">{{ p }}</button>
                 {% else %}
-            <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
+                     <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
                 {% endif %}
-            {% endfor %}
+        {% endfor %}
+        </div>
     {% else %}
         <p>Нет машин в наличии!</p>
     {% endif %}

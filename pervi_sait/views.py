@@ -55,7 +55,7 @@ class NewDeleteView(DeleteView):
 
 
 def glavnaya(request):
-        form1 = Vibor_AutoForm(request.POST)
+        form1 = Vibor_AutoForm(request.GET)
         return render(request,'pervi_sait/glavnaya.html',{'form1':form1})
 
 
@@ -69,7 +69,7 @@ def pervaya(request):
 
 
 def vtoraya(request):
-    asd = Auto.objects.filter(marka = 'BMW')
+    asd = Auto.objects.filter(marka = 'Bmw')
     paginator = Paginator(asd, PER_PAGE)
 
     page_number = request.GET.get('page')
@@ -84,6 +84,10 @@ def tretya(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'pervi_sait/tretya.html',{'page_obj':page_obj})
+
+def zapis_to(request):
+    form = Auto.objects.all()
+    return render(request,'pervi_sait/zapis_na_to.html',{'form':form})
 
 
 
@@ -120,8 +124,8 @@ def forma_auto(request):
 
 def vibor_auto_glavnaya(request):
     error = ''
-    if request.method == 'POST':
-        form1=AutoForm(request.POST)
+    if request.method == 'GET':
+        form1=AutoForm(request.GET)
         if form1.is_valid():
             return {{form1}}
         else:

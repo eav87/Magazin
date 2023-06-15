@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from .import views
 from .views import RegisterUser, LoginUser
 
 urlpatterns = [
@@ -17,5 +17,6 @@ urlpatterns = [
     path('login',LoginUser.as_view(),name='login'),
     path('logout',views.logout_user,name='logout'),
     path('register',RegisterUser.as_view(),name='register'),
-    path('Akcii',views.akcii,name = 'akcii')
+    path('Akcii',views.akcii,name = 'akcii'),
+    path('zapis_na_to',views.zapis_to,name = 'zapis_to')
 ]
