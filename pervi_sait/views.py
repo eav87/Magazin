@@ -55,7 +55,7 @@ class NewDeleteView(DeleteView):
 
 def glavnaya(request):
         form1 = Vibor_AutoForm(request.GET)
-        return render(request,'pervi_sait/glavnaya.html',{'form1':form1})
+        return render(request,'pervi_sait/glavnaya.html',{'form1':form1, 'marks':marks, 'models':models})
 
 
 def show_auto_mersedes(request):
