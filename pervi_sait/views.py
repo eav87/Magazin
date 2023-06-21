@@ -64,7 +64,7 @@ def show_auto(request, marka: str):
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj})
+    return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj, 'marka':marka})
 
 
 def zapis_to(request):

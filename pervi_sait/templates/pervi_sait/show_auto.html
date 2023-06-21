@@ -1,5 +1,5 @@
 {% extends 'pervi_sait/loyaut.html' %}
-{% block title %}BMW{% endblock %}
+{% block title %} {{ marka }} {% endblock %}
 {% block content %}
     {% if page_obj %}
         {% for el in page_obj %}
@@ -16,9 +16,9 @@
                  {% if page_obj.number == p %}
                      <button class="btn btn-info">{{ p }}</button>
                 {% else %}
-            <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
+                     <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
                 {% endif %}
-            {% endfor %}
+        {% endfor %}
         </div>
     {% else %}
         <p>Нет машин в наличии!</p>
