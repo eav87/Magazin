@@ -9,8 +9,7 @@ from .models import Auto
 from .forms import AutoForm, Vibor_AutoForm, RegisterUserForm
 from django.views.generic import DetailView, UpdateView, ListView, CreateView, DeleteView
 
-PER_PAGE = 4
-
+PER_PAGE = 4 # Количество записей на странице
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
@@ -59,31 +58,39 @@ def glavnaya(request):
         return render(request,'pervi_sait/glavnaya.html',{'form1':form1})
 
 
-def pervaya(request):
-    asd = Auto.objects.filter(marka = 'Mersedes' )
-    paginator = Paginator(asd, PER_PAGE)
+def show_auto(request, marka: str):
+    models = Auto.objects.filter(marka = marka)
+    paginator = Paginator(models, PER_PAGE)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'pervi_sait/pervaya.html',{'page_obj':page_obj})
+    return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj})
+
+# def pervaya(request, marka: str):
+#     asd = Auto.objects.filter(marka)
+#     paginator = Paginator(asd, PER_PAGE)
+
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+#     return render(request, 'pervi_sait/pervaya.html',{'page_obj':page_obj})
 
 
-def vtoraya(request):
-    asd = Auto.objects.filter(marka = 'Bmw')
-    paginator = Paginator(asd, PER_PAGE)
+# def vtoraya(request):
+#     asd = Auto.objects.filter(marka = 'Bmw')
+#     paginator = Paginator(asd, PER_PAGE)
 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render (request, 'pervi_sait/vtoraya.html',{'page_obj':page_obj})
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+#     return render (request, 'pervi_sait/vtoraya.html',{'page_obj':page_obj})
 
 
-def tretya(request):
-    asd = Auto.objects.filter(marka = 'Audi')
-    paginator = Paginator(asd, PER_PAGE)
+# def tretya(request):
+#     asd = Auto.objects.filter(marka = 'Audi')
+#     paginator = Paginator(asd, PER_PAGE)
 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'pervi_sait/tretya.html',{'page_obj':page_obj})
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+#     return render(request, 'pervi_sait/tretya.html',{'page_obj':page_obj})
 
 def zapis_to(request):
     form = Auto.objects.all()
