@@ -58,6 +58,15 @@ def glavnaya(request):
         return render(request,'pervi_sait/glavnaya.html',{'form1':form1})
 
 
+def show_auto_mersedes(request):
+    return show_auto(request, marka='Mersedes')
+
+def show_auto_bmw(request):
+    return show_auto(request, marka='BMW')
+
+def show_auto_audi(request):
+    return show_auto(request, marka='Audi')
+
 def show_auto(request, marka: str):
     models = Auto.objects.filter(marka = marka)
     paginator = Paginator(models, PER_PAGE)
