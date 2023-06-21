@@ -66,31 +66,6 @@ def show_auto(request, marka: str):
     page_obj = paginator.get_page(page_number)
     return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj})
 
-# def pervaya(request, marka: str):
-#     asd = Auto.objects.filter(marka)
-#     paginator = Paginator(asd, PER_PAGE)
-
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-#     return render(request, 'pervi_sait/pervaya.html',{'page_obj':page_obj})
-
-
-# def vtoraya(request):
-#     asd = Auto.objects.filter(marka = 'Bmw')
-#     paginator = Paginator(asd, PER_PAGE)
-
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-#     return render (request, 'pervi_sait/vtoraya.html',{'page_obj':page_obj})
-
-
-# def tretya(request):
-#     asd = Auto.objects.filter(marka = 'Audi')
-#     paginator = Paginator(asd, PER_PAGE)
-
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-#     return render(request, 'pervi_sait/tretya.html',{'page_obj':page_obj})
 
 def zapis_to(request):
     form = Auto.objects.all()
