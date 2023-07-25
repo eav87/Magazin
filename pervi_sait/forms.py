@@ -12,8 +12,8 @@ class AutoForm(ModelForm):
         fields = ['marka','model','harakteristika','data']
 
         widgets = {
-            "marka": ChoiceField(choices = Auto.objects.all().values('marka').distinct(), widget = Select(attrs = {'class' : 'form-control'})),
-            "model": ChoiceField(choices = Auto.objects.all().values('model').distinct(), widget = Select(attrs = {'class' : 'form-control'})),
+            "marka": ChoiceField(choices = Auto.objects.distinct('marka'), widget = Select(attrs = {'class' : 'form-control'})),
+            "model": ChoiceField(choices = Auto.objects.distinct('model'), widget = Select(attrs = {'class' : 'form-control'})),
 
             'harakteristika' : Textarea(attrs = {
                 'class' : 'form-control',
@@ -35,7 +35,7 @@ class Vibor_AutoForm(ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Введите марку автомобиля'
             },
-                choices=Auto.objects.all().values('marka').distinct(),
+                choices=Auto.objects.distinct('marka'),
                 widget=Select(attrs={'class': 'form-control'})
             ),
 
@@ -43,7 +43,7 @@ class Vibor_AutoForm(ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Введите модель автомобиля'
             },
-                choices=Auto.objects.all().values('marka').distinct(),
+                choices=Auto.objects.distinct('model'),
                 widget=Select(attrs={'class': 'form-control'})
             )
         }
