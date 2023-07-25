@@ -1,0 +1,26 @@
+{% extends 'pervi_sait/loyaut.html' %}
+{% block title %}audi{% endblock %}
+{% block content %}
+    {% if page_obj %}
+        {% for el in page_obj %}
+            <div class="alert">
+                <h3>{{ el.marka|title }}</h3>
+                <h4>{{ el.model|title }}</h4>
+                <p>{{ el.harakteristika|lower|capfirst|truncatewords:10 }}</p>
+                <p>{{ el.data }}</p>
+                <a href="{% url 'details_view' el.id %}" class="btn btn-warning">Посмотреть</a>
+            </div>
+        {% endfor %}
+        <div class="container-fluid">
+        {% for p in page_obj.paginator.page_range %}
+                 {% if page_obj.number == p %}
+                     <button class="btn btn-info">{{ p }}</button>
+                {% else %}
+            <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Нет машин в наличии!</p>
+{% endif %}
+{% endblock %}
