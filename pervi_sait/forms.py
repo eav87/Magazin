@@ -1,5 +1,5 @@
 from .models import Auto
-from django.forms import ModelForm, DateInput, Textarea, ChoiceField, Select
+from django.forms import ModelForm, TextInput, DateInput, Textarea, PasswordInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -11,10 +11,10 @@ class AutoForm(ModelForm):
         model = Auto
         fields = ['marka','model','harakteristika','data']
 
-        widgets = {
+        widgets = {   
             "marka": ChoiceField(choices = Auto.objects.distinct('marka'), widget = Select(attrs = {'class' : 'form-control'})),
             "model": ChoiceField(choices = Auto.objects.distinct('model'), widget = Select(attrs = {'class' : 'form-control'})),
-
+            
             'harakteristika' : Textarea(attrs = {
                 'class' : 'form-control',
                 'placeholder' : 'Характеристика авто'
@@ -25,28 +25,20 @@ class AutoForm(ModelForm):
             })
         }
 
-
 class Vibor_AutoForm(ModelForm):
     class Meta:
         model = Auto
-        fields = ['marka', 'model']
+        fields = ['marka','model']
         widgets = {
-            'marka': ChoiceField(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите марку автомобиля'
-            },
-                choices=Auto.objects.distinct('marka'),
-                widget=Select(attrs={'class': 'form-control'})
-            ),
-
-            'model': ChoiceField(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите модель автомобиля'
-            },
-                choices=Auto.objects.distinct('model'),
-                widget=Select(attrs={'class': 'form-control'})
-            )
-        }
+            'marka':TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Введите марку автомобиля'
+        }),
+            'model':TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Введите модель автомобиля'
+            })
+    }
 
 # Create your forms here.lichni kabinet:
 
