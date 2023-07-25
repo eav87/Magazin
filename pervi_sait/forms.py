@@ -11,10 +11,15 @@ class AutoForm(ModelForm):
         model = Auto
         fields = ['marka','model','harakteristika','data']
 
-        widgets = {   
-            "marka": ChoiceField(choices = Auto.objects.distinct('marka'), widget = Select(attrs = {'class' : 'form-control'})),
-            "model": ChoiceField(choices = Auto.objects.distinct('model'), widget = Select(attrs = {'class' : 'form-control'})),
-            
+        widgets = {
+            "marka" : TextInput(attrs = {
+                'class' : 'form-control',
+                'placeholder' : 'Марка авто'
+            }),
+            "model" : TextInput(attrs = {
+                'class' : 'form-control',
+                'placeholder' : 'Модель авто'
+            }),
             'harakteristika' : Textarea(attrs = {
                 'class' : 'form-control',
                 'placeholder' : 'Характеристика авто'
