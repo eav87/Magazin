@@ -57,24 +57,49 @@ def glavnaya(request):
         form1 = Vibor_AutoForm(request.GET)
         return render(request,'pervi_sait/glavnaya.html',{'form1':form1})
 
-
-def show_auto(request, marka: str):
-    models = Auto.objects.filter(marka = marka)
-    paginator = Paginator(models, PER_PAGE)
+def pervaya(request,):
+    asd = Auto.objects.filter(marka = 'Mersedes')
+    paginator = Paginator(asd, PER_PAGE)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj})
+    return render(request, 'pervi_sait/pervaya.html',{'page_obj':page_obj})
+
+
+def vtoraya(request):
+    asd = Auto.objects.filter(marka = 'Bmw')
+    paginator = Paginator(asd, PER_PAGE)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render (request, 'pervi_sait/vtoraya.html',{'page_obj':page_obj})
+
+
+def tretya(request):
+    asd = Auto.objects.filter(marka = 'Audi')
+    paginator = Paginator(asd, PER_PAGE)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'pervi_sait/tretya.html',{'page_obj':page_obj})
+
+# def show_auto(request, marka: str):
+#     models = Auto.objects.filter(marka = marka)
+#     paginator = Paginator(models, PER_PAGE)
+
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+#     return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj})
 
 
 def zapis_to(request):
     form = Auto.objects.all()
-    return render(request,'pervi_sait/zapis_na_to.html',{'form':form})
+    return render(request,'pervi_sait/zapis_na_to',{'form':form})
 
 
 
 def akcii(request):
-    return render(request,'pervi_sait/Akcii.html')
+    return render(request, 'pervi_sait/akcii.html')
 
 def vse_auto(request):
     asd = Auto.objects.all().order_by('-data')

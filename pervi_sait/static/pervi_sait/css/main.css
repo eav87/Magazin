@@ -129,3 +129,8 @@ input { font-size: 20px}
 .card-header {
  position: relative;
 }
+.headerlink {
+ background-image: url("https://thumbs.dreamstime.com/b/высокоскоростной-дизайн-движения-высок-техник-абстрактная-технология-121323504.jpg");
+ font-family: Lobster;
+ font-weight: bolder;
+}
