@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class AutoForm(ModelForm):
     class Meta:
         model = Auto
-        fields = ['marka','model','harakteristika','data']
+        fields = ['marka','model','harakteristika', 'create_date']
 
         widgets = {
             "marka" : TextInput(attrs = {
@@ -24,7 +24,7 @@ class AutoForm(ModelForm):
                 'class' : 'form-control',
                 'placeholder' : 'Характеристика авто'
             }),
-            'data' : DateInput(attrs = {
+            'create_date': DateInput(attrs = {
                 'class' : 'form-control',
                 'placeholder':'Дата публикации авто'
             })

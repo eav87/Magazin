@@ -92,9 +92,9 @@ def tretya(request):
 #     return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj})
 
 
-def zapis_to(request):
+def zapis_na_to(request):
     form = Auto.objects.all()
-    return render(request,'pervi_sait/zapis_na_to',{'form':form})
+    return render(request,'pervi_sait/zapis_na_to.html',{'form':form})
 
 
 

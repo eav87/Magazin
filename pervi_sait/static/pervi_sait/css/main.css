@@ -71,7 +71,7 @@ footer {
 }
 #foto3{
  width: 100%;
- height: 200px;
+ height: 210px;
  background-image: url("https://img2.goodfon.ru/original/800x480/8/13/audi-s8-plus-car-road-speed.jpg");
  background-size: cover;
  position: relative;
@@ -101,7 +101,7 @@ form {
  margin:auto;
 }
 .features {
- height: 605px;
+ height: 600px;
  background: #2381a2;
  color: snow;
  font-family: Bahnschrift;
@@ -130,6 +130,7 @@ input { font-size: 20px}
  position: relative;
 }
 .headerlink {
+ height: 100px;
  background-image: url("https://thumbs.dreamstime.com/b/высокоскоростной-дизайн-движения-высок-техник-абстрактная-технология-121323504.jpg");
  font-family: Lobster;
  font-weight: bolder;
