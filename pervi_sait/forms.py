@@ -1,4 +1,4 @@
-from .models import Auto
+from .models import Auto, ZapisTo
 from django.forms import ModelForm, TextInput, DateInput, Textarea, PasswordInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class AutoForm(ModelForm):
     class Meta:
         model = Auto
-        fields = ['marka','model','harakteristika', 'create_date']
+        fields = ['marka','model','harakteristika','price']
 
         widgets = {
             "marka" : TextInput(attrs = {
@@ -22,28 +22,15 @@ class AutoForm(ModelForm):
             }),
             'harakteristika' : Textarea(attrs = {
                 'class' : 'form-control',
-                'placeholder' : 'Характеристика авто'
+                'placeholder' : 'Состояние автомобиля:'
+                                'Пробег:'
+                                'Год выпуска:'
             }),
-            'create_date': DateInput(attrs = {
+            'price': TextInput(attrs = {
                 'class' : 'form-control',
-                'placeholder':'Дата публикации авто'
+                'placeholder':'Цена автомобиля'
             })
         }
-
-class Vibor_AutoForm(ModelForm):
-    class Meta:
-        model = Auto
-        fields = ['marka','model']
-        widgets = {
-            'marka':TextInput(attrs={
-                'class':'form-control',
-                'placeholder':'Введите марку автомобиля'
-        }),
-            'model':TextInput(attrs={
-                'class':'form-control',
-                'placeholder':'Введите модель автомобиля'
-            })
-    }
 
 # Create your forms here.lichni kabinet:
 
@@ -69,3 +56,29 @@ class RegisterUserForm(UserCreationForm):
             })
         }
 
+
+class ZapisToForm(ModelForm):
+    class Meta:
+        model = ZapisTo
+        fields = ['name','name_auto','nomer_auto']
+
+        widgets = {'name':forms.TextInput(attrs={
+                'class': 'form-input',
+                'placeholder': 'имя'
+            }),
+                   'name_auto':forms.TextInput(attrs={
+                'class': 'form-input',
+                'placeholder': 'название авто'
+            }),
+                   'nomer_auto':forms.TextInput(attrs={
+                'class': 'form-input',
+                'placeholder': 'номер авто'
+            })
+            # 'date': forms.DateTimeField(
+            # input_formats=['%d/%m/%Y %H:%M'],
+            # widget=forms.DateTimeInput(attrs={
+            #     'class': 'form-control datetimepicker-input',
+            #     'data-target': '#datetimepicker1'
+            # })
+        # )
+        }

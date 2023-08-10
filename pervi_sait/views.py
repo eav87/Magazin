@@ -1,13 +1,14 @@
 from django.contrib.auth import logout, login
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.views.generic import DetailView, UpdateView, CreateView, DeleteView
 
+from .forms import AutoForm, RegisterUserForm, ZapisToForm
 from .models import Auto
-from .forms import AutoForm, Vibor_AutoForm, RegisterUserForm
-from django.views.generic import DetailView, UpdateView, ListView, CreateView, DeleteView
 
 PER_PAGE = 4 # Количество записей на странице
 
@@ -54,8 +55,23 @@ class NewDeleteView(DeleteView):
 
 
 def glavnaya(request):
-        form1 = Vibor_AutoForm(request.GET)
-        return render(request,'pervi_sait/glavnaya.html',{'form1':form1})
+    error = ''
+    if request.method == 'POST':
+        form = AutoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('vse_auto')
+        else:
+            error = 'Форма не верна'
+
+    form = AutoForm
+
+    data = {
+        'form': form,
+        'error': error
+    }
+    return render(request, 'pervi_sait/glavnaya.html', data)
+
 
 def pervaya(request,):
     asd = Auto.objects.filter(marka = 'Mersedes')
@@ -91,18 +107,33 @@ def tretya(request):
 #     page_obj = paginator.get_page(page_number)
 #     return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj})
 
+@login_required
+def zapisnato(request):
+    error = ''
+    if request.method == 'POST':
+        form = ZapisToForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+            return redirect('glavnaya')
+        else:
+            error = 'Данные не верны!!!'
 
-def zapis_na_to(request):
-    form = Auto.objects.all()
-    return render(request,'pervi_sait/zapis_na_to.html',{'form':form})
-
+    form = ZapisToForm
+    data = {
+        'form': form,
+        'error': error
+    }
+    return render(request,'pervi_sait/zapis_na_to.html',data)
+#
 
 
 def akcii(request):
     return render(request, 'pervi_sait/akcii.html')
 
 def vse_auto(request):
-    asd = Auto.objects.all().order_by('-data')
+    asd = Auto.objects.all().order_by('-create_date')
     paginator = Paginator(asd,4)
 
     page_number = request.GET.get('page')
@@ -110,13 +141,16 @@ def vse_auto(request):
     return render(request, 'pervi_sait/vse_auto.html',{'page_obj': page_obj})
 
 
-
+@login_required
 def forma_auto(request):
     error = ''
     if request.method == 'POST':
         form = AutoForm(request.POST)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+
             return redirect('glavnaya')
         else:
             error = 'Форма не верна'
@@ -129,21 +163,6 @@ def forma_auto(request):
     }
     return render(request, 'pervi_sait/forma_auto.html',data)
 
-def vibor_auto_glavnaya(request):
-    error = ''
-    if request.method == 'GET':
-        form1=AutoForm(request.GET)
-        if form1.is_valid():
-            return {{form1}}
-        else:
-            error = 'Форма не верна'
 
-    form1 = Vibor_AutoForm
-
-    data1 = {
-        'form1' : form1,
-        'error': error
-    }
-    return render(request, 'pervi_sait/vibran_auto.html', data1)
 
 

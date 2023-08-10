@@ -1,11 +1,11 @@
 {% extends 'pervi_sait/loyaut.html' %}
-{% block title %}{{ auto.marka }}{% endblock %}
+{% block title %}{{ auto.marka }}{% endblock %}{% comment %}
 {% block content %}
     <p>Выбранные авто</p>
-      {{ form1 }}
     <div class="container-fluid">
-            {% for p in page_obj.paginator.page_range %}
-            <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
-            {% endfor %}
+        {{ qwert }}
+        {% for p in page_obj.paginator.page_range %}
+        <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
+        {% endfor %}
     </div>
-{% endblock %}
+{% endblock %}{% endcomment %}

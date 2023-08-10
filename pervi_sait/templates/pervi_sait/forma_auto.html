@@ -1,13 +1,13 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {% block title %}Форма добавления авто{% endblock %}
 {% block content %}
-    <div class='features'>
+    <div class='btn btn-info'>
         <form class="form" method="post">
             {% csrf_token %}
             {{ form.marka}}<br>
             {{ form.model}}<br>
             {{ form.harakteristika}}<br>
-            {{ form.data}}<br>
+            {{ form.price}}<br>
             <span>{{ error }}</span>
             <button type="submit" class="btn btn-success">Добавить авто</button>
         </form>

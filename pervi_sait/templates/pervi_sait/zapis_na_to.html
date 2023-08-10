@@ -1,14 +1,13 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {% block title %}Запись на то{% endblock %}
 {% block content %}
-    <div class='features'>
-    {% for i in form %}
-        <div class="btn bg-black ">
-            {{ i }}
-{#            {{ i.model}}#}
-{#            {{ i.harakteristika}}#}
-{#            {{ i.data}}#}
-        </div>
-    {% endfor %}
+    <div class='btn border-white'>
+        <form class="form" method="POST">
+            {% csrf_token %}
+            {{form.name}}<br><br>
+            {{ form.name_auto }}<br><br>
+            {{ form.nomer_auto }}<br><br>
+            <button type="submit" class="btn btn-primary">Записаться</button>
+        </form>
     </div>
 {% endblock %}

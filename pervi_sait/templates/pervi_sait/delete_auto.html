@@ -1,7 +1,7 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {% block title %}Форма удаления авто{% endblock %}
 {% block content %}
-    <div class='features'>
+    <div class='btn btn-light '>
         <form method="post">
             {% csrf_token %}
             <h1>{{ auto.marka }}</h1>

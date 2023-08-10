@@ -9,7 +9,7 @@ class Auto(models.Model):
     harakteristika = models.TextField('Характеристики',blank=True)
     create_date = models.DateTimeField('Дата публикации', default=timezone.now)
     user = models.ForeignKey(User,on_delete=models.PROTECT,null=True)
-    foto = models.ImageField(upload_to='%Y/%m/%d', blank=True)
+    foto = models.ImageField(upload_to='photo/%Y/%m/%d', blank=True)
     price = models.DecimalField(max_digits=10,decimal_places=2,null=False)
 
 

@@ -1,10 +1,13 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {% block title %}{{ auto.marka }}{% endblock %}
 {% block content %}
+    <div class="btn btn-info">
     <h1>{{ auto.marka }}</h1>
     <h2>{{ auto.model }}</h2>
     <h3>{{ auto.harakteristika }}</h3>
     <h4>{{ auto.create_date }}</h4><br>
+    <h5>{{ auto.price }}</h5>
     <a href="{% url 'update_auto' auto.id %}" class="btn text-bg-primary">Редактировать</a>
     <a href="{% url 'delete_auto' auto.id %}" class="btn text-bg-info" onclick="return window.confirm('Вы действительно хотите удалить?')">Удалить</a>
+    </div>
 {% endblock %}

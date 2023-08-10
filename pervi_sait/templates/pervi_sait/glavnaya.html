@@ -1,12 +1,12 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {%block title %}{{ auto.marka }}{% endblock %}
 {% block content %}
-{#    <div class="content">#}
-        <form class="form" method="get">
-{#            {% csrf_token %}#}
-            {{ form1.marka}}<br>
-            {{ form1.model}}<br>
-{#            <span>{{ error }}</span>#}
+    <div class="btn btn-light">
+        <form class="form" method="post">
+            {% csrf_token %}
+            {{ form }}<br>
+            <span>{{ error }}</span>
             <button type="submit" class="btn btn-success">Выбрать</button>
         </form>
+    </div>
 {% endblock %}
