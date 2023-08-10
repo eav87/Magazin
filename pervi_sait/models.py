@@ -33,6 +33,9 @@ class Part(models.Model):
     foto = models.ImageField('Фото',upload_to='%Y/%m/%d', blank=True)
     data = models.DateTimeField('Дата',default=timezone.now)
 
+    def __str__(self):
+        return self.name
+
 
 # класс запись на то
 class ZapisTo(models.Model):
@@ -41,6 +44,9 @@ class ZapisTo(models.Model):
     nomer_auto = models.CharField(max_length=10)
     date = models.DateTimeField('Дата',default=timezone.now)
     user = models.OneToOneField(User,on_delete=models.PROTECT,null=True)
+
+    def __str__(self):
+        return self.name
 
 
 

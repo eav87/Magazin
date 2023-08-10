@@ -152,6 +152,3 @@ def forma_auto(request):
     }
     return render(request, 'pervi_sait/forma_auto.html',data)
 
-
-
-

@@ -17,5 +17,5 @@ urlpatterns = [
     path('logout',views.logout_user,name='logout'),
     path('register',RegisterUser.as_view(),name='register'),
     path('akcii',views.akcii,name = 'akcii'),
-    path('zapis_na_to',views.zapisnato,name = 'zapis_na_to')
+    path('zapis_na_to',views.zapisnato,name = 'zapis_na_to'),
 ]
