@@ -1,12 +1,21 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {%block title %}{{ auto.marka }}{% endblock %}
 {% block content %}
-    <div class="btn btn-light">
-        <form class="form" method="post">
-            {% csrf_token %}
-            {{ form }}<br>
-            <span>{{ error }}</span>
-            <button type="submit" class="btn btn-success">Выбрать</button>
-        </form>
-    </div>
+        {% for el in page_obj %}
+        <div class="btn btn-dark btn-group-lg border-white">
+            {{ el.marka|title }}<br>
+            {{ el.model|title }}<br>
+{#            <p>{{ el.harakteristika|lower|capfirst|truncatewords:10 }}</p>#}
+            <a href="{% url 'details_view' el.id %}" class="btn btn-outline-danger">Посмотреть</a>
+        </div>
+        {% endfor %}
+        <div class="container-fluid">
+            {% for p in page_obj.paginator.page_range %}
+                 {% if page_obj.number == p %}
+                     <button class="btn btn-info">{{ p }}</button>
+                {% else %}
+            <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
 {% endblock %}

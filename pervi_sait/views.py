@@ -55,23 +55,12 @@ class NewDeleteView(DeleteView):
 
 
 def glavnaya(request):
-    error = ''
-    if request.method == 'POST':
-        form = AutoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('vse_auto')
-        else:
-            error = 'Форма не верна'
+    asd = Auto.objects.all().order_by('-create_date')
+    paginator = Paginator(asd, 10)
 
-    form = AutoForm
-
-    data = {
-        'form': form,
-        'error': error
-    }
-    return render(request, 'pervi_sait/glavnaya.html', data)
-
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'pervi_sait/glavnaya.html', {'page_obj': page_obj})
 
 def pervaya(request,):
     asd = Auto.objects.filter(marka = 'Mersedes')
