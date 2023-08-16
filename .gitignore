@@ -1,2 +1,5 @@
 .idea
 /db.sqlite3
+/bin/
+/lib/
+/.Python
