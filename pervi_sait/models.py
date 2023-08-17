@@ -31,7 +31,7 @@ class Part(models.Model):
     opisanie = models.TextField('Описание товара',blank=True)
     price = models.DecimalField('Цена',max_digits=10,decimal_places=2,null=False)
     foto = models.ImageField('Фото',upload_to='%Y/%m/%d', blank=True)
-    data = models.DateTimeField('Дата',default=timezone.now)
+    date = models.DateTimeField('Дата',default=timezone.now)
 
     def __str__(self):
         return self.name
@@ -42,8 +42,9 @@ class ZapisTo(models.Model):
     name = models.CharField(max_length=50)
     name_auto = models.CharField(max_length=200)
     nomer_auto = models.CharField(max_length=10)
-    date = models.DateTimeField('Дата',default=timezone.now)
-    user = models.OneToOneField(User,on_delete=models.PROTECT,null=True)
+    date = models.DateTimeField('Выбрать дату и время для записи')
+    create_date = models.DateTimeField('Дата',default=timezone.now)
+    user = models.ForeignKey(User,on_delete=models.PROTECT,null=True)
 
     def __str__(self):
         return self.name
