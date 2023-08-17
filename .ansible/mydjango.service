@@ -1,0 +1,12 @@
+[Unit]
+Description=My Django Project
+After=network.target
+
+[Service]
+User=django
+Group=django
+WorkingDirectory=/home/django/magazin
+ExecStart=/home/django/magazin/manage.py runserver
+
+[Install]
+WantedBy=multi-user.target
