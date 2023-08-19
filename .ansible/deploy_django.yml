@@ -16,12 +16,18 @@
 
     - name: Install necessary packages
       apt:
-        name: [ 'python3', 'python3-pip', 'python3-venv' ]
+        name:
+          - python3
+          - python3-pip
+          - python3-venv
         state: present
 
     - name: Install nginx
       apt:
-        name: nginx
+        name:
+          - nginx
+          - certbot
+          - python3-certbot-nginx
         state: present
 
     - name: Create django user without login capabilities
@@ -29,11 +35,6 @@
         name: django
         system: yes
         shell: /usr/sbin/nologin
-
-    - name: Create a virtual environment
-      command:
-        cmd: "python3 -m venv {{ virtualenv_path }}"
-        creates: "{{ virtualenv_path }}"
 
     - name: Create static directory for Django project
       file:
@@ -54,12 +55,6 @@
     - name: Install requirements
       pip:
         requirements: "{{ django_path}}/requirements.txt"
-        virtualenv: "{{ virtualenv_path }}"
-
-    - name: Install gunicorn in virtual environment
-      pip:
-        name: gunicorn
-        virtualenv: "{{ virtualenv_path }}"
 
     - name: Copy Nginx configuration
       copy:
@@ -88,6 +83,21 @@
         src: "/etc/nginx/sites-available/{{ project_name }}"
         dest: "/etc/nginx/sites-enabled/{{ project_name }}"
         state: link
+
+    - name: "Запуск Certbot для Nginx"
+      command:
+         cmd: certbot --nginx -d magazin.dev.doomer.ru --non-interactive --agree-tos --email denis@doomer.ru
+         warn: no
+      when: certbot_renewal is not defined
+      register: certbot_setup
+
+    - name: Установка cron-задачи для автоматического обновления сертификата
+      cron:
+          name: Certbot Renewal
+          minute: "30"
+          hour: "2"
+          job: "/usr/bin/certbot renew --quiet"
+      when: certbot_setup is changed
 
     - name: Restart Nginx
       service:

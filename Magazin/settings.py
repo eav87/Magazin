@@ -27,7 +27,8 @@ DEBUG = os.environ.get('DEBUG', 'True')
 
 ALLOWED_HOSTS = [
     'magazin.dev.doomer.ru',
-    '127.0.0.1'
+    '127.0.0.1',
+    '188.68.223.126',
 ]
 
 
