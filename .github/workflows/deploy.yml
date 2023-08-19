@@ -16,8 +16,7 @@ jobs:
 
     - name: Deploy to server
       env:
-#        HOST: dev.doomer.ru
-        HOST: 188.68.223.126
+        HOST: dev.doomer.ru
         USERNAME: root
         KEY: ${{ secrets.SERVER_SSH_KEY }}
       run: |
