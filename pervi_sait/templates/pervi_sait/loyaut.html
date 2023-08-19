@@ -20,14 +20,14 @@
         <a href="{% url 'glavnaya' %}" type="button" class="btn btn-danger">Главная страница сайта</a>
         "CHUVASH-AUTO"<br>
         {% if request.user.is_authenticated %}
-            <a href="logout" type="button" class="btn btn-warning">Выйти</a><br><br>
+            <a href="{% url 'logout' %}" type="button" class="btn btn-warning">Выйти</a><br><br>
 
-            <a href="forma_auto" class="button btn btn-success">Добавить авто на сайт</a>
+            <a href="{% url 'forma_auto' %}" class="button btn btn-success">Добавить авто на сайт</a>
             <button class="btn btn-outline-danger">{{ user.username }}, вы вошли на сайт</button>
 
         {% else %}
-        <a href="login" type="button" class="btn btn-primary">Войти в личный кабинет</a>
-        <a href="register" type="button" class="btn btn-success">Регистрация пользователя</a>
+        <a href="{% url 'login' %}" type="button" class="btn btn-primary">Войти в личный кабинет</a>
+        <a href="{% url 'register' %}" type="button" class="btn btn-success">Регистрация пользователя</a>
         {% endif %}
 </nav>
 
@@ -43,10 +43,10 @@
           <div class="carousel-caption">
               <h1 class="display-6">MERSEDES-BENZ</h1>
               <H3>Лучшие автомобили только у нас!!!</H3>
-              <a href="vse_auto" type="button" class="btn btn-primary">Автомобили в наличии</a>
-              <a href="zapis_na_to" type="button" class="btn btn-success">Записаться на ТО</a>
-              <a href="akcii" type="button" class="btn btn-danger">Акции-Скидки-Бонусы</a>
-              <a href="login" type="button" class="btn btn-info">Магазин Автозапчастей</a>
+              <a href="{% url 'vse_auto'%}" type="button" class="btn btn-primary">Автомобили в наличии</a>
+              <a href="{% url 'zapis_na_to'%}" type="button" class="btn btn-success">Записаться на ТО</a>
+              <a href="{% url 'akcii'%}" type="button" class="btn btn-danger">Акции-Скидки-Бонусы</a>
+              <a href="{% url 'parts' %}" type="button" class="btn btn-info">Магазин Автозапчастей</a>
           </div>
       </div>
       <div class="carousel-item">
@@ -57,7 +57,7 @@
               <a href='{% url "vse_auto" %}' type="button" class="btn btn-primary">Автомобили в наличии</a>
               <a href='{% url "zapis_na_to"%}' type="button" class="btn btn-success" >Записаться на ТО</a>
               <a href='{% url "akcii" %}' type="button" class="btn btn-danger">Акции-Скидки-Бонусы</a>
-              <a href='{% url "login" %}' type="button" class="btn btn-info">Магазин Автозапчастей</a>
+              <a href='{% url "parts" %}' type="button" class="btn btn-info">Магазин Автозапчастей</a>
           </div>
       </div>
       <div class="carousel-item">
@@ -65,10 +65,10 @@
           <div class="carousel-caption">
               <h1 class="display-6">AUDI</h1>
               <H3>Лучшие автомобили только у нас!!!</H3>
-              <a href="vse_auto" type="button" class="btn btn-primary">Автомобили в наличии</a>
-              <a href="zapis_na_to" type="button" class="btn btn-success" >Записаться на ТО</a>
-              <a href="akcii" type="button" class="btn btn-danger">Акции-Скидки-Бонусы</a>
-              <a href="login" type="button" class="btn btn-info">Магазин Автозапчастей</a>
+              <a href="{% url 'vse_auto' %}" type="button" class="btn btn-primary">Автомобили в наличии</a>
+              <a href="{% url 'zapis_na_to' %}" type="button" class="btn btn-success" >Записаться на ТО</a>
+              <a href="{% url  'akcii'%}" type="button" class="btn btn-danger">Акции-Скидки-Бонусы</a>
+              <a href="{% url 'parts'%}" type="button" class="btn btn-info">Магазин Автозапчастей</a>
           </div>
       </div>
   </div>
@@ -83,17 +83,20 @@
 </div>
 <aside>
         <div id="menu">
-            <div id="foto1"><a href='vtoraya'>bmw</a></div>
-            <div id="foto2"><a href='pervaya'>mersedes</a></div>
-            <div id="foto3"><a href='tretya'>audi</a></div>
+            <div id="foto1"><a href="{% url 'vtoraya' %}">bmw</a></div>
+            <div id="foto2"><a href={% url 'pervaya' %}>mersedes</a></div>
+            <div id="foto3"><a href="{% url 'tretya' %}">audi</a></div>
         </div>
 </aside>
     <main>
         {% block content %}{% endblock %}
     </main>
 <footer >
-    <div class="container-fluid alert alert-headerlink headerlink">
-    <address>Мы находимся по адрессу г.Чебоксары Ядринское шоссе 4 тел. 8 962 321 7456</address>
+    <div class="container-fluid alert alert-heading ">
+    <ul><address>Мы находимся по адрессу г.Чебоксары Ядринское шоссе 4 </address></ul>
+        <ul>тел. 8 962 321 7456</ul>
+        <ul>Телеграмм Бот</ul>
+        <ul>YouTube</ul>
     </div>
 </footer>
 </body>

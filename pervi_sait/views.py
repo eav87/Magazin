@@ -5,10 +5,10 @@ from django.contrib.auth.views import LoginView
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView, CreateView, DeleteView
+from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, ListView
 
 from .forms import AutoForm, RegisterUserForm, ZapisToForm
-from .models import Auto
+from .models import Auto, Part
 
 PER_PAGE = 4 # Количество записей на странице
 
@@ -47,7 +47,7 @@ class NewUpdateView(UpdateView):
 
 class NewDeleteView(DeleteView):
     model = Auto
-    success_url = '/vse_auto'
+    success_url = '/glavnaya'
 
     template_name = 'pervi_sait/delete_auto.html'
 
@@ -151,4 +151,9 @@ def forma_auto(request):
         'error': error
     }
     return render(request, 'pervi_sait/forma_auto.html',data)
+
+class Parts(ListView):
+    model = Part
+    template_name = 'pervi_sait/parts.html'
+    context_object_name = 'parts'
 

@@ -1,6 +1,6 @@
 from django.urls import path
 from .import views
-from .views import RegisterUser, LoginUser
+from .views import RegisterUser, LoginUser, Parts
 
 urlpatterns = [
     path('',views.glavnaya,name = 'glavnaya'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('register',RegisterUser.as_view(),name='register'),
     path('akcii',views.akcii,name = 'akcii'),
     path('zapis_na_to',views.zapisnato,name = 'zapis_na_to'),
+    path('parts',Parts.as_view(),name='parts')
 ]

@@ -1,5 +1,5 @@
 from .models import Auto, ZapisTo
-from django.forms import ModelForm, TextInput, DateInput, Textarea, PasswordInput
+from django.forms import ModelForm, TextInput, DateInput, Textarea, PasswordInput,DateTimeInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -60,25 +60,22 @@ class RegisterUserForm(UserCreationForm):
 class ZapisToForm(ModelForm):
     class Meta:
         model = ZapisTo
-        fields = ['name','name_auto','nomer_auto']
+        fields = ['name','name_auto','nomer_auto','date']
 
         widgets = {'name':forms.TextInput(attrs={
                 'class': 'form-input',
                 'placeholder': 'имя'
             }),
-                   'name_auto':forms.TextInput(attrs={
+                'name_auto':forms.TextInput(attrs={
                 'class': 'form-input',
                 'placeholder': 'название авто'
             }),
-                   'nomer_auto':forms.TextInput(attrs={
+                'nomer_auto':forms.TextInput(attrs={
                 'class': 'form-input',
                 'placeholder': 'номер авто'
-            })
-            # 'date': forms.DateTimeField(
-            # input_formats=['%d/%m/%Y %H:%M'],
-            # widget=forms.DateTimeInput(attrs={
-            #     'class': 'form-control datetimepicker-input',
-            #     'data-target': '#datetimepicker1'
-            # })
-        # )
+            }),
+                'date': forms.DateTimeInput(attrs={
+                    'class':'form-control',
+                    'type':'datetime-local'
+                })
         }
