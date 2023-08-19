@@ -16,7 +16,7 @@
 
     - name: Install necessary packages
       apt:
-        name: ['python3', 'python3-pip', 'python3-venv']
+        name: [ 'python3', 'python3-pip', 'python3-venv' ]
         state: present
 
     - name: Install nginx
@@ -69,7 +69,19 @@
     - name: Copy systemd service file
       copy:
         src: mydjango.service
-        dest: /etc/systemd/system/
+        dest: /etc/systemd/system/mydjango.service
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Reload systemd to recognize new service
+      command:
+        systemctl daemon-reload
+
+    - name: Enable mydjango.service to start on boot
+      systemd:
+        name: mydjango
+        enabled: yes
 
     - name: Enable Nginx configuration
       file:

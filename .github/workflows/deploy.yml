@@ -1,9 +1,10 @@
-name: Deploy to Remote Server
+name: Deploy to dev.doomer.ru
 
 on:
   push:
     branches:
       - master
+      - feature/*
 
 jobs:
   deploy:
@@ -13,25 +14,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Deploy to Server
+    - name: Deploy to server
       env:
-        DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-        HOST: ${{ env.HOST }}
-        USER: root
-        TARGET_DIR: /home/django/magazin
+#        HOST: dev.doomer.ru
+        HOST: 188.68.223.126
+        USERNAME: root
+        KEY: ${{ secrets.SERVER_SSH_KEY }}
       run: |
-        # Install ssh-agent if not already installed, it is required by Docker.
-        which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
-
-        # Run ssh-agent (inside the build environment)
-        eval $(ssh-agent -s)
-
-        # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-        echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
-
-        # Use ssh-keyscan to scan the keys of your private server. Replace your_server_ip_or_hostname with your host's IP or domain name.
-        mkdir -p ~/.ssh
-        ssh-keyscan $HOST >> ~/.ssh/known_hosts
-
-        # Finally, Use rsync (or scp) to deploy your code to the server
-        rsync -av --delete . $USER@$HOST:$TARGET_DIR
+        echo "$KEY" > deploy_key
+        chmod 600 deploy_key
+        scp -i deploy_key -o StrictHostKeyChecking=no -r . $USERNAME@$HOST:/home/django/magazin
+        ssh -i deploy_key -o StrictHostKeyChecking=no $USERNAME@$HOST "systemctl restart mydjango"
+        rm -f deploy_key
