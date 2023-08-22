@@ -1,34 +1,36 @@
-version: '3.8'
+version: '3'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn yourproject.wsgi:application --bind 0.0.0.0:8000
+    labels:
+      - "traefik.frontend.rule=Host:yourdomain.com"
+      - "traefik.port=8000"
     volumes:
-      - ./:/usr/src/app/
-      - ./static:/usr/src/app/static:rw
-    ports:
-      - "8000:8000"
-    env_file:
-      - .env
-    networks:
-        magazin_net:
-    restart: always
+      - .:/app
+    depends_on:
+      - mysql
   mysql:
-    image: mariadb:10.5.8
-    volumes:
-      - mysql_ng_data:/var/lib/mysql
-    env_file:
-      - .env
+    image: mariadb:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - mariadb_data:/var/lib/mysql
+  traefik:
+    image: traefik:v2.x
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
     ports:
-      - '3306:3306'
-    networks:
-      magazin_net:
-    restart: always
-networks:
-    magazin_net:
-        driver: bridge
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  mariadb_data:
