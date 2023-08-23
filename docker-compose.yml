@@ -1,36 +1,40 @@
 version: '3'
+
 services:
   web:
+    image: django_gunicorn_image
+    container_name: django_gunicorn_container
+    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
     build: .
-    command: gunicorn yourproject.wsgi:application --bind 0.0.0.0:8000
-    labels:
-      - "traefik.frontend.rule=Host:yourdomain.com"
-      - "traefik.port=8000"
     volumes:
       - .:/app
+    expose:
+      - "8000"
     depends_on:
-      - mysql
-  mysql:
-    image: mariadb:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
+      - db
+
+  db:
+    image: mariadb
+    container_name: mariadb_container
     volumes:
-      - mariadb_data:/var/lib/mysql
-  traefik:
-    image: traefik:v2.x
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
+      - db_data:/var/lib/mysql
+    env_file:
+      - .env
+
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_container
     ports:
       - "80:80"
-      - "8080:8080"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ./nginx:/etc/nginx/conf.d
+      - static_volume:./pervi_sait/static
+#      - media_volume:./media
+    depends_on:
+      - web
 
 volumes:
-  mariadb_data:
+  db_data:
+  static_volume:
+#  media_volume:

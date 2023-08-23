@@ -1,15 +1,15 @@
-# Используйте официальный образ Python
-FROM python:3.10-slim
+FROM python:3.9
 
-# Установите рабочую директорию в контейнере
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir /app
 WORKDIR /app
 
-# Установите зависимости проекта
-COPY requirements.txt .
+RUN apt-get update && \
+    apt-get -qy install python3-dev default-libmysqlclient-dev gcc
+
+
+ADD requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируйте содержимое локальной директории в контейнер
-COPY . .
-
-# Запустите приложение
-CMD ["gunicorn", "magazin.wsgi:application", "--bind", "0.0.0.0:8000"]
+ADD . /app/
