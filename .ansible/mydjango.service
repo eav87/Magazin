@@ -6,7 +6,7 @@ After=network.target
 User=django
 Group=django
 WorkingDirectory=/home/django/magazin
-ExecStart=/home/django/magazin/manage.py runserver
+ExecStart=/usr/bin/python /home/django/magazin/manage.py runserver
 
 [Install]
 WantedBy=multi-user.target
