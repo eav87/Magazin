@@ -6,7 +6,10 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, ListView
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.viewsets import ModelViewSet
+
 
 from .forms import AutoForm, RegisterUserForm, ZapisToForm
 from .models import Auto, Part, Wheels
@@ -174,3 +177,7 @@ class Parts(ListView):
 class WheelsViewSet(ModelViewSet):
     queryset = Wheels.objects.all()
     serializer_class = WheelsSerializer
+    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
+    filter_fields = ['name']
+    search_fields = ['name','opisanie']
+    ordering_fields = ['date']
