@@ -1,6 +1,17 @@
 from django.urls import path
-from .import views
-from .views import RegisterUser, LoginUser, Parts
+
+from . import views
+from .views import RegisterUser, LoginUser
+
+# from rest_framework.routers import SimpleRouter
+#
+# from pervi_sait.views import PartViewSet
+#
+# router = SimpleRouter()
+#
+# router.register(r'parts',PartViewSet)
+
+
 
 urlpatterns = [
     path('',views.glavnaya,name = 'glavnaya'),
@@ -18,5 +29,5 @@ urlpatterns = [
     path('register',RegisterUser.as_view(),name='register'),
     path('akcii',views.akcii,name = 'akcii'),
     path('zapis_na_to',views.zapisnato,name = 'zapis_na_to'),
-    path('parts',Parts.as_view(),name='parts')
+    path('parts',views.Parts.as_view(),name='parts')
 ]

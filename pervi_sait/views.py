@@ -6,11 +6,14 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, ListView
+from rest_framework.viewsets import ModelViewSet
 
 from .forms import AutoForm, RegisterUserForm, ZapisToForm
-from .models import Auto, Part
+from .models import Auto, Part, Wheels
+from .serializers import WheelsSerializer
 
-PER_PAGE = 4 # Количество записей на странице
+PER_PAGE = 4  # Количество записей на странице
+
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
@@ -22,6 +25,7 @@ class RegisterUser(CreateView):
         login(self.request, user)
         return redirect('glavnaya')
 
+
 class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = 'pervi_sait/login.html'
@@ -29,9 +33,11 @@ class LoginUser(LoginView):
     def get_success_url(self):
         return reverse_lazy('glavnaya')
 
+
 def logout_user(request):
     logout(request)
     return redirect('login')
+
 
 class NewDetailView(DetailView):
     model = Auto
@@ -45,13 +51,12 @@ class NewUpdateView(UpdateView):
 
     form_class = AutoForm
 
+
 class NewDeleteView(DeleteView):
     model = Auto
     success_url = '/glavnaya'
 
     template_name = 'pervi_sait/delete_auto.html'
-
-
 
 
 def glavnaya(request):
@@ -62,31 +67,33 @@ def glavnaya(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'pervi_sait/glavnaya.html', {'page_obj': page_obj})
 
-def pervaya(request,):
-    asd = Auto.objects.filter(marka = 'Mersedes')
+
+def pervaya(request, ):
+    asd = Auto.objects.filter(marka='Mersedes')
     paginator = Paginator(asd, PER_PAGE)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'pervi_sait/pervaya.html',{'page_obj':page_obj})
+    return render(request, 'pervi_sait/pervaya.html', {'page_obj': page_obj})
 
 
 def vtoraya(request):
-    asd = Auto.objects.filter(marka = 'Bmw')
+    asd = Auto.objects.filter(marka='Bmw')
     paginator = Paginator(asd, PER_PAGE)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render (request, 'pervi_sait/vtoraya.html',{'page_obj':page_obj})
+    return render(request, 'pervi_sait/vtoraya.html', {'page_obj': page_obj})
 
 
 def tretya(request):
-    asd = Auto.objects.filter(marka = 'Audi')
+    asd = Auto.objects.filter(marka='Audi')
     paginator = Paginator(asd, PER_PAGE)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'pervi_sait/tretya.html',{'page_obj':page_obj})
+    return render(request, 'pervi_sait/tretya.html', {'page_obj': page_obj})
+
 
 # def show_auto(request, marka: str):
 #     models = Auto.objects.filter(marka = marka)
@@ -114,20 +121,23 @@ def zapisnato(request):
         'form': form,
         'error': error
     }
-    return render(request,'pervi_sait/zapis_na_to.html',data)
+    return render(request, 'pervi_sait/zapis_na_to.html', data)
+
+
 #
 
 
 def akcii(request):
     return render(request, 'pervi_sait/akcii.html')
 
+
 def vse_auto(request):
     asd = Auto.objects.all().order_by('-create_date')
-    paginator = Paginator(asd,4)
+    paginator = Paginator(asd, 4)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'pervi_sait/vse_auto.html',{'page_obj': page_obj})
+    return render(request, 'pervi_sait/vse_auto.html', {'page_obj': page_obj})
 
 
 @login_required
@@ -147,13 +157,20 @@ def forma_auto(request):
     form = AutoForm
 
     data = {
-        'form' : form,
+        'form': form,
         'error': error
     }
-    return render(request, 'pervi_sait/forma_auto.html',data)
+    return render(request, 'pervi_sait/forma_auto.html', data)
+
 
 class Parts(ListView):
     model = Part
     template_name = 'pervi_sait/parts.html'
     context_object_name = 'parts'
+    paginate_by = 1
 
+
+
+class WheelsViewSet(ModelViewSet):
+    queryset = Wheels.objects.all()
+    serializer_class = WheelsSerializer

@@ -1,12 +1,22 @@
 {% extends 'pervi_sait/loyaut.html' %}
 {% block title %}Автозапчасти{% endblock %}
 {% block content %}
-<div class="features">
-    {{ parts.name }}
-    {{ parts.opisanie }}
-
-</div>
-
-
-
+    <div class="features" xmlns="http://www.w3.org/1999/html">
+            {% for part in parts %}
+                <div class="alert alert-link">
+                    {{ part.name }}
+                    {{ part.opisanie }}
+                    {{ part.price }}
+                </div>
+            {% endfor %}
+    </div>
+        <div class="container-fluid">
+            {% for p in page_obj.paginator.page_range %}
+                 {% if page_obj.number == p %}
+                     <button class="btn btn-info">{{ p }}</button>
+                {% else %}
+                    <a href="?page={{ p }}" class="btn btn-outline-info">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
 {% endblock %}

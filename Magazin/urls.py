@@ -18,12 +18,20 @@ from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.routers import SimpleRouter
+
+from pervi_sait.views import WheelsViewSet
+
+router = SimpleRouter()
+router.register(r'wheels',WheelsViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pervi_sait.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += router.urls
 
 # if settings.DEBUG:
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

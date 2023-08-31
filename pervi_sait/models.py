@@ -59,6 +59,10 @@ class CartItem(models.Model):
     date = models.DateTimeField('дата',default=timezone.now)
 
 
-
+class Wheels(models.Model):
+    name = models.CharField(max_length=200)
+    opisanie = models.TextField('Описание колес',blank=True)
+    date  = models.DateTimeField('Дата',default=timezone.now)
+    part = models.ManyToManyField(Part)
 
 
