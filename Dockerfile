@@ -7,6 +7,5 @@ WORKDIR /app
 ADD requirements.txt /app/requirements.txt
 # Копирует все файлы из нашего локального проекта в контейнер
 # Запускает команду pip install для всех библиотек, перечисленных в requirements.txt
-RUN pip install --upgrade pip && \
-    pip install -r /app/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 EXPOSE 8000

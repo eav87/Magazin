@@ -28,6 +28,7 @@ DEBUG = getenv('DEBUG',False)
 ALLOWED_HOSTS = [
     'magazin.dev.doomer.ru',
     '127.0.0.1',
+    '0.0.0.0',
     'localhost',
 ]
 

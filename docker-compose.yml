@@ -9,19 +9,29 @@ services:
       - .:/app
       - static_data:/app/static
       - media_data:/app/media
-    ports:
-      - "8000:8000"
+
+    restart: unless-stopped
     depends_on:
       - db
     env_file:
       - .env
+    environment:
+      - TZ=Europe/Moscow
+    labels:
+      - "traefik.http.routers.magazin.rule=Host(`magazin.dev.doomer.ru`)"
+      - "traefik.http.services.magazin.loadbalancer.server.port=8080"
+      - "--entrypoints.webSecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=denis@doomer.ru"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
 
   db:
     image: mariadb
     volumes:
       - db_data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "${DB_PORT}:3306"
     env_file:
       - .env
     restart: unless-stopped
