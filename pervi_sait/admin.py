@@ -10,5 +10,10 @@ from .models import *
 
 
 admin.site.register(Auto)
+admin.site.register(Part)
+admin.site.register(ZapisTo)
+admin.site.register(CartItem)
+admin.site.register(Wheels)
+
 
 
