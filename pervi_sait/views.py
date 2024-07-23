@@ -106,7 +106,7 @@ def tretya(request):
 #     page_obj = paginator.get_page(page_number)
 #     return render(request, 'pervi_sait/show_auto.html',{'page_obj':page_obj})
 
-@login_required
+@login_required(login_url='/login')
 def zapisnato(request):
     error = ''
     if request.method == 'POST':

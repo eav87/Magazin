@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os.path
-from os import getenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,13 +19,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-qe&xv77!zqiza2e-7+)#mf!x(sm2iu3u*=k@wy3w8c7-cu%o)3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv('DEBUG',False)
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    'magazin.dev.doomer.ru',
     '127.0.0.1',
     '0.0.0.0',
     'localhost',
@@ -79,24 +77,12 @@ WSGI_APPLICATION = 'Magazin.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if getenv('SQLITE_FILE'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': getenv('MYSQL_DATABASE'),
-            'USER': getenv('MYSQL_USER'),
-            'PASSWORD': getenv('MYSQL_PASSWORD'),
-            'HOST': getenv('MYSQL_HOST'),
-            'PORT': '3306',
-        }
-    }
+}
 
 
 # Password validation
@@ -122,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'ru'
-TIME_ZONE = getenv('TIME_ZONE')
+TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_TZ = True
 
