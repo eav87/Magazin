@@ -57,7 +57,7 @@ class NewUpdateView(UpdateView):
 
 class NewDeleteView(DeleteView):
     model = Auto
-    success_url = '/glavnaya'
+    success_url =  reverse_lazy('glavnaya')
 
     template_name = 'pervi_sait/delete_auto.html'
 
