@@ -1,15 +1,12 @@
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 
 from . import views
-from .views import RegisterUser, LoginUser
+from .views import RegisterUser, LoginUser, WheelsViewSet
 
-# from rest_framework.routers import SimpleRouter
-#
-# from pervi_sait.views import PartViewSet
-#
-# router = SimpleRouter()
-#
-# router.register(r'parts',PartViewSet)
+router = SimpleRouter()
+
+router.register('/wheels',WheelsViewSet)
 
 
 
@@ -29,5 +26,9 @@ urlpatterns = [
     path('register',RegisterUser.as_view(),name='register'),
     path('akcii',views.akcii,name = 'akcii'),
     path('zapis_na_to',views.zapisnato,name = 'zapis_na_to'),
-    path('parts',views.Parts.as_view(),name='parts')
+    path('parts',views.Parts.as_view(),name='parts'),
+    path('wheels', views.wheels_vj, name='vtoraya'),
+
 ]
+
+urlpatterns += router.urls

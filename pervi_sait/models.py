@@ -58,13 +58,13 @@ class CartItem(models.Model):
     count = models.IntegerField('количество')
     date = models.DateTimeField('дата',default=timezone.now)
 
-
+# колеса
 class Wheels(models.Model):
     name = models.CharField(max_length=200)
     opisanie = models.TextField('Описание колес',blank=True)
-    date  = models.DateTimeField('Дата',default=timezone.now)
-    price = models.DecimalField('Цена',max_digits=10,decimal_places=2,null=False)
-    part = models.ManyToManyField(Part)
+    date = models.DateTimeField('Дата',default=timezone.now)
+    # price = models.DecimalField('Цена',max_digits=10,decimal_places=2,null=False)
+    # part = models.ManyToManyField(Part)
 
 
 

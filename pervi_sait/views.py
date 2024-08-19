@@ -173,7 +173,6 @@ class Parts(ListView):
     paginate_by = 1
 
 
-
 class WheelsViewSet(ModelViewSet):
     queryset = Wheels.objects.all()
     serializer_class = WheelsSerializer
@@ -181,3 +180,7 @@ class WheelsViewSet(ModelViewSet):
     filter_fields = ['name']
     search_fields = ['name','opisanie']
     ordering_fields = ['date']
+
+
+def wheels_vj(request):
+    return render(request,'pervi_sait/wheels.html')
